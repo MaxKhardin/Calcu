@@ -1,3 +1,4 @@
+import java.sql.Time;
 import java.util.Scanner;
  public class Main {
      public static void main(String[] args) {
@@ -6,96 +7,55 @@ import java.util.Scanner;
          System.out.println("Введите тип клиента (bus) (hum)"); // уточнить тип 1-hum 0-bus
          String x = Per.nextLine();
          switch (x) {
-             case "hum":
-                 Scanner Sum = new Scanner(System.in);
-                 System.out.println("Введите сумму займа");// сумма займа
-                 int y = Sum.nextInt();
-                 if(y>=1) {
-                     System.out.println("Вы заняли: " + y);
-                     Scanner Perс = new Scanner(System.in);
-                     System.out.println("Введите процент"); // сумма займа
-                     int z = Perс.nextInt();
-                     if(z>=0){
+             case "bus":
+             Scanner Sum = new Scanner(System.in);
+             System.out.println("Введите сумму займа");// сумма займа
+             float y = Sum.nextInt();
+             if (y > 1) {
+                 System.out.println("Вы заняли: " + y);
+                 Scanner Perс = new Scanner(System.in);
+                 System.out.println("Введите процент"); // сумма займа
+                 float z = Perс.nextInt();
+                 if (z > 0) {
                      System.out.println("Ваш процент: " + z);
                      Scanner Pay = new Scanner(System.in);
                      System.out.println("Введите сумму ежемесячного платежа"); // сумма займа
-                     int p = Pay.nextInt();
-                     if(p>=0)
-                     System.out.println("Ваш платеж: " + p);
-                     int e;
-                     int a = y + z;// остаток долга
-                     int m; //Переплата за год
-                     int С = +m; // Переплата всего
-                     int i; //счетчик месяцев до начисления процентов
-                     if (i < 13) {
-                         for (int e = a; e < 0; a - p) {// остаток после платежа
-                             i = 0++;
-                             switch (i) {
-                                 case 12:                    //если месяц номер 12 начислить процент
-                                     m = a * (z / 100);
-                                     e = a + a * (z / 100);
-                                     break;
-                             }
-                         }
-                     }
-
-                     }
-
-                     break;
-                     System.out.println("Переплата составит" + С);
-                 }
-                 else
-
-
-                         break;
-                         case "bus":
-                             Scanner Sum = new Scanner(System.in);
-                             System.out.println("Введите сумму займа");// сумма займа
-                             int y = Sum.nextInt();
-                             System.out.println("Вы заняли: " + y);
-                             Scanner Perс = new Scanner(System.in);
-                             System.out.println("Введите процент"); // сумма займа
-                             int z = Perс.nextInt();
-                             System.out.println("Ваш процент: " + z);
-                             Scanner Pay = new Scanner(System.in);
-                             System.out.println("Введите сумму ежемесячного платежа"); // сумма займа
-                             int p = Pay.nextInt();
-                             System.out.println("Ваш платеж: " + p);
-                             int e; // остатко с процентами
-                             int a = y;// остаток долга
-                             int c; //Переплата за год
-                             int С=+c; // Переплата всего
-                             int i; //счетчик месяцев до начисления процентов
-                             if (i <13) {
-                                 for (int e = a; e < 0; a - 10000) {// остаток после платежа
-                                     i = 0++;
-                                     switch (i) {
-                                         case 12:                    //если месяц номер 12 начислить процент
-                                             c=a*(z/100);
-                                             e = a + a * (z / 100);
-                                             break;
-                                     }
+                     float p = Pay.nextInt();
+                     if (p > 1) {
+                         System.out.println("Ваш платеж: " + p);
+                         float a = y; //остаток по кредиту
+                         int e = 0; // цикл проверки
+                         float m = 0; //переплата за год
+                         for (float i = y; i >= 0; i = i - p) {
+                             System.out.println("Вы заплатли " + p);
+                             System.out.println("Остаток " + i);
+                             if (e <= 11) {
+                                 e = e + 1;
+                                 System.out.println("месяцев до начисления -" + e);
+                             } else if (e == 12) {
+                                 e = 0;
+                                 m = i * (z / 100);
+                                 System.out.println("Начисленно " + m);
+                                 i = i + m;
+                                 System.out.println("Остаток долга " + i);
+                                 if (y<=i){
+                                     System.out.println("Невозможно выплатить");
+                                     System.exit(0);
                                  }
                              }
 
-                             break;
-                             System.out.println("Переплата составит"+С);
-
+                         }
+                         float Dil=m+m; // Переплата всего
+                         System.out.println("Переплата составит "+Dil);
                      }
-                     System.out.println("Ошибка");
-                     System.exit(0);
-
-
                  }
+             }
          }
 
+     }
+ }
 
-            //остаток долга a
-           // остаток на конец периода e=y-z
-            // если счетчик L/12=1, то c=e+e*(y/100)
-            // счетчик сбрасывается если L= 12
-            // значение e подставляется в a
-            // все в цикл пока a<=0
+
 
 
 
