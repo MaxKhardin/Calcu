@@ -1,0 +1,53 @@
+import java.util.Scanner;
+
+public class Calculate {
+    public static void main(String[] args) {
+        Data cycle = new Data();// Общие входные данные
+        System.out.println("Введите сумму займа, процент и ежемесячный платеж через пробел"); // сумма займа
+        Scanner scan = new Scanner(System.in);
+        float Sum = scan.nextFloat(); // Сумма займа
+        float Perc = scan.nextFloat(); // Процентная ставка
+        float Pay = scan.nextFloat(); // Платеж ежемесячный
+        float Remaind; // остаток задолженности
+        int Ser; // номер цикла, для начисления процентов раз в год
+        float OverP; // проценты начисленные в конце года
+        System.out.println(Sum + " " + Perc + " " + Pay);
+        if (Sum > 0 && Perc > 0 && Pay > 0) {
+            Scanner Per = new Scanner(System.in);
+            System.out.println("Введите тип клиента (bus) (hum)"); // уточнить тип 1-hum 0-bus
+            String x = Per.nextLine();
+            System.out.println("Вы выбрали тип " + x);
+
+            switch (x) {
+                case "bus":
+                    cycle.data();
+                case "hum":
+                    Remaind = Sum + Sum * (Per / 100); //остаток по кредиту
+                    cycle.data();
+            }
+        }
+    }
+
+    public static class Data {
+
+        public void data() {
+
+            for (float i = Remaind; i >= 0; i = i - Pay) {
+                if (Ser <= 11) {
+                    Ser = Ser + 1;
+                } else if (Ser == 12) {
+                    Ser = 0;
+                    OverP = i * (Perc / 100);
+                    i = i + OverP;
+                    if (Remaind <= i) {
+                        System.out.println("Невозможно выплатить");
+                        System.exit(0);
+
+                    }
+                }
+            }
+            float Dil = OverP + OverP;
+            System.out.println("Переплата составит " + Dil);
+        }
+    }
+}
