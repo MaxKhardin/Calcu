@@ -3,20 +3,17 @@ import java.util.Scanner;
 public class Main_v2 {
     public void main(String[] args) {
         Data cycle = new Data();
-        System.out.println("Введите сумму займа, процент и ежемесячный платеж через пробел");
+        System.out.println("Введите сумму займа, процент, ежемесячный платеж и тип клиента (bus) (hum)через пробел");
         Scanner scan = new Scanner(System.in);
         float sum = scan.nextFloat();
         float perc = scan.nextFloat();
         float pay = scan.nextFloat();
+        String type = scan.nextLine();
         float remaind;
         int ser;
         float overP;
-        System.out.println(sum + "" + perc + "" + pay);
+        System.out.println(sum + "" + perc + "" + pay+""+ type);
         if (sum > 0 && perc > 0 && pay > 0) {
-            Scanner per = new Scanner(System.in);
-            System.out.println("Введите тип клиента (bus) (hum)");
-            String type = per.nextLine();
-            System.out.println("Вы выбрали " + type);
             switch (type) {
                 case "bus":
                     cycle.data();
